@@ -74,11 +74,33 @@ void usercontrol(void) {
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
-    double Axis3Position;
+    int Axis3Position;
+    int Axis2Position;
+
     Axis3Position = Controller1.Axis3.position(percent);
+    Axis2Position = Controller1.Axis2.position(percent);
+
     Controller1.Screen.setCursor(1,1);
     Controller1.Screen.clearScreen();
     Controller1.Screen.print(Axis3Position);
+
+    Controller1.Screen.setCursor(2,1);
+    Controller1.Screen.clearLine();
+    Controller1.Screen.print(Axis2Position);
+
+    leftWheels.setVelocity(Axis3Position, percent);
+    rightWheels.setVelocity(Axis2Position, percent);
+    
+    if (Axis3Position > 0) {
+      leftWheels.spin(forward);
+    } else if (Axis3Position < 0) {
+      leftWheels.spin(reverse);
+    } else if (Axis2Position > 0) {
+      rightWheels.spin(forward);
+    } else if (Axis2Position < 0) {
+      rightWheels.spin(reverse);
+    }
+
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
