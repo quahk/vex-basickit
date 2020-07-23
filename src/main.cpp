@@ -80,25 +80,25 @@ void usercontrol(void) {
     Axis3Position = Controller1.Axis3.position(percent);
     Axis2Position = Controller1.Axis2.position(percent);
 
-    Controller1.Screen.setCursor(1,1);
+   /* Controller1.Screen.setCursor(1,1);
     Controller1.Screen.clearScreen();
     Controller1.Screen.print(Axis3Position);
 
     Controller1.Screen.setCursor(2,1);
     Controller1.Screen.clearLine();
-    Controller1.Screen.print(Axis2Position);
+    Controller1.Screen.print(Axis2Position); */
 
     leftWheels.setVelocity(Axis3Position, percent);
-    rightWheels.setVelocity(Axis2Position, percent);
+    rightWheels.setVelocity(Axis2Position, percent); 
     
     if (Axis3Position > 0) {
       leftWheels.spin(forward);
     } else if (Axis3Position < 0) {
-      leftWheels.spin(reverse);
+      leftWheels.spin(forward);
     } else if (Axis2Position > 0) {
       rightWheels.spin(forward);
     } else if (Axis2Position < 0) {
-      rightWheels.spin(reverse);
+      rightWheels.spin(forward);
     }
 
     // ........................................................................
