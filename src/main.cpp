@@ -80,6 +80,9 @@ void usercontrol(void) {
     Axis3Position = Controller1.Axis3.position(percent);
     Axis2Position = Controller1.Axis2.position(percent);
 
+    Brain.Screen.setCursor(1,1);
+    Brain.Screen.print("Kill Hung Theif!");
+
    /* Controller1.Screen.setCursor(1,1);
     Controller1.Screen.clearScreen();
     Controller1.Screen.print(Axis3Position);
@@ -91,14 +94,10 @@ void usercontrol(void) {
     leftWheels.setVelocity(Axis3Position, percent);
     rightWheels.setVelocity(Axis2Position, percent); 
     
-    if (Axis3Position > 0) {
-      leftWheels.spin(forward);
-    } else if (Axis3Position < 0) {
-      leftWheels.spin(forward);
-    } else if (Axis2Position > 0) {
-      rightWheels.spin(forward);
-    } else if (Axis2Position < 0) {
-      rightWheels.spin(forward);
+    if (Axis3Position != 0) {
+      leftWheels.spin(forward, Axis3Position, percent);
+    }  else if (Axis2Position != 0) {
+      rightWheels.spin(forward, Axis2Position, percent);
     }
 
     // ........................................................................
